@@ -59,6 +59,7 @@ const email = document.getElementById('email')
 const bio = document.getElementById('bio')
 const buttonSubmit = document.getElementById('create');
 const contact_items = document.getElementById('contact-items');
+const resetBtn = document.getElementById('resetBtn');
 
 const uploadFile = upload.createFileInputHandler({
     onUploaded: async ({ fileUrl, fileId }) => {
@@ -80,6 +81,7 @@ function onSubmit(e){
             imageuri: imageurl
         }
     contact_data.push(contact_object)
+    console.log(contact_data)
     contact_data.map((data, index)=>{
         contact_items.innerHTML += `
         <div class="contact-item" key=${index}>
@@ -103,6 +105,17 @@ function onSubmit(e){
         `
     })
 
+    if(e.currentTarget.disabled){
+        e.currentTarget.disabled = false
+    } else {
+        e.currentTarget.disabled = true
+    }
+
 }
 
+
 buttonSubmit.addEventListener('click', onSubmit)
+
+resetBtn.addEventListener('click', (e)=>{
+    e.currentTarget.disabled = false;
+})
